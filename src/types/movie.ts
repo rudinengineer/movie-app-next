@@ -1,0 +1,21 @@
+export type MovieType = {
+    backdrop_path: string,
+    id: number,
+    name: string,
+    title: string,
+    original_title: string,
+    original_name: string,
+    overview: string,
+    poster_path: string,
+    profile_path: string,
+    media_type: string,
+    adult: boolean,
+    original_language: string,
+    genre_ids: Array<number>,
+    popularity: any,
+    release_date: string,
+    first_air_date: string,
+    vote_average: any,
+    vote_count: number,
+    origin_country: Array<number>
+}
