@@ -1,12 +1,12 @@
 "use client"
-import React from 'react'
+import React, { Suspense } from 'react'
 import { sendRequestTMDB } from '~/lib/tmdb'
-import Movie from '../components/Movie'
-import MovieSkeleton from '../components/skeleton/MovieSkeleton'
-import { MovieType } from '../types/movie';
-import { useSearchParams } from 'next/navigation'
+import Movie from '~/components/Movie'
+import MovieSkeleton from '~/components/skeleton/MovieSkeleton'
+import { MovieType } from '~/types/movie';
 import Slider from '~/components/ui/Slider'
 import Pagination from '~/components/ui/Pagination';
+import { useSearchParams } from 'next/navigation'
 
 type Props = {}
 
@@ -43,44 +43,46 @@ export default function Home({}: Props) {
   }, [page])
 
   return (
-    <div>
-      <div className="px-3 p-2 rounded-md overflow-hidden">
-        <Slider movies={movies} />
-      </div>
-      <div className="p-3">
-        <div>
-          <h1 className='text-2xl font-bold'>Paling Populer✨</h1>
+    <Suspense>
+      <div>
+        <div className="px-3 p-2 rounded-md overflow-hidden">
+          <Slider movies={movies} />
         </div>
-        <div className="mt-4 grid grid-cols-3 ss:grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-3">
+        <div className="p-3">
+          <div>
+            <h1 className='text-2xl font-bold'>Paling Populer✨</h1>
+          </div>
+          <div className="mt-4 grid grid-cols-3 ss:grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-3">
+            {
+              isLoading ? (
+                  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20].map(({}, index: number) => (
+                      <MovieSkeleton key={index} />
+                  ))
+              ) : (
+                  movies.length > 0 && movies.map((value: any, index: number) => (
+                      <div className='mb-2' key={index}>
+                          <Movie movie={value} />
+                      </div>
+                  ))
+              )
+            }
+          </div>
+
           {
-            isLoading ? (
-                [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20].map(({}, index: number) => (
-                    <MovieSkeleton key={index} />
-                ))
-            ) : (
-                movies.length > 0 && movies.map((value: any, index: number) => (
-                    <div className='mb-2' key={index}>
-                        <Movie movie={value} />
-                    </div>
-                ))
+            (!isLoading && !movies.length) && (
+                <div className="mt-2 w-full flex justify-center">
+                    <h1 className="text-center font-semibold">Data tidak ditemukan.</h1>
+                </div>
+            )
+          }
+
+          {
+            movies.length > 0 && (
+              <Pagination pagination={paginateCount} page={page} total_pages={response?.total_pages} />
             )
           }
         </div>
-
-        {
-          (!isLoading && !movies.length) && (
-              <div className="mt-2 w-full flex justify-center">
-                  <h1 className="text-center font-semibold">Data tidak ditemukan.</h1>
-              </div>
-          )
-        }
-
-        {
-          movies.length > 0 && (
-            <Pagination pagination={paginateCount} page={page} total_pages={response?.total_pages} />
-          )
-        }
       </div>
-    </div>
+    </Suspense>
   )
 }
