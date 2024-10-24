@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { POSTER_BASEURL } from '~/constants/tmdb'
 import { MovieType } from '~/types/movie'
 import "swiper/css";
+import Image from 'next/image'
 
 type Props = {
     movies: Array<MovieType>
@@ -24,7 +25,7 @@ export default function Slider({movies}: Props) {
                 <p className='mt-1 w-[90%] hidden sm:block'>{ value.overview.substring(0, 500) + (value.overview.length > 500 && '...') }</p>
                 <p className='mt-1 w-[90%] sm:hidden'>{ value.overview.substring(0, 80) + (value.overview.length > 80 && '...') }</p>
             </div>
-            <img src={ POSTER_BASEURL + value.backdrop_path } className='w-full aspect-[16/7] object-cover object-center' />
+            <Image width={100} height={100} alt='' src={ POSTER_BASEURL + value.backdrop_path } className='w-full aspect-[16/7] object-cover object-center' />
             </SwiperSlide>
         ))
         }

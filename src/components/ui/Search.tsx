@@ -64,7 +64,7 @@ export default function Search({keyword}: Props) {
     } else {
         fetchFilter()
     }
-  }, [keyword, page, params.get('type'), params.get('filter')])
+  }, [keyword, page, params])
 
   return (
     <div>
@@ -72,7 +72,7 @@ export default function Search({keyword}: Props) {
         {
             !params.has('type') && !params.has('filter') && (
                 <div>
-                    <h1 className='text-2xl font-bold'>Hasil pencarian dari "{ keyword }"</h1>
+                    <h1 className='text-2xl font-bold'>Hasil pencarian dari { '"' + keyword + '"' }</h1>
                 </div>
             )
         }

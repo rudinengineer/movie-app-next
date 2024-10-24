@@ -5,6 +5,7 @@ import RelatedMovies from '../RelatedMovies'
 import { sendRequestTMDB } from '~/lib/tmdb'
 import { StarIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Props = {
     movieId: any
@@ -31,12 +32,12 @@ export default function TvDetail({movieId}: Props) {
         <div className='px-4 sm:px-0'>
             <div className='relative'>
                 <div className="w-full h-full absolute top-0 left-0 bg-black bg-opacity-30 backdrop-blur-sm"></div>
-                <img src={ POSTER_BASEURL + movie?.backdrop_path } alt={movie?.name} className='w-full max-h-[50vh] rounded-sm' />
+                <Image width={100} height={100} src={ POSTER_BASEURL + movie?.backdrop_path } alt={movie?.name} className='w-full max-h-[50vh] rounded-sm' />
             </div>
             <div className='mt-6'>
                 <div className="flex flex-wrap gap-5">
                     <div className='w-full sm:w-[40%] overflow-hidden flex-shrink-0 flex justify-center items-center'>
-                        <img src={POSTER_BASEURL + movie?.poster_path} alt={movie?.name} className='w-2/3 sm:w-full h-full max-h-96 rounded-sm' />
+                        <Image width={100} height={100} src={POSTER_BASEURL + movie?.poster_path} alt={movie?.name} className='w-2/3 sm:w-full h-full max-h-96 rounded-sm' />
                     </div>
                     <div className='w-full sm:w-[60%] p-1 flex-shrink-0'>
                         <h1 className="text-2xl sm:text-3xl font-bold">{ movie?.name }</h1>

@@ -3,6 +3,7 @@ import { MovieType } from '../types/movie'
 import { POSTER_BASEURL } from '../constants/tmdb'
 import { EyeIcon, StarIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type Props = {
     movie: MovieType,
@@ -22,7 +23,7 @@ export default function Movie({movie, type}: Props) {
                 <div className="w-full h-full justify-center items-center absolute bg-black bg-opacity-10 backdrop-blur-[1.5px] z-[1] transition ease-in-out hidden group-hover:flex">
                     <EyeIcon className='size-12' />
                 </div>
-                <img src={POSTER_BASEURL + (movie.poster_path ?? movie.profile_path)} alt={movie.name} className='w-full h-full rounded-sm transition duration-200 ease-in-out group-hover:scale-110' />
+                <Image width={100} height={100} src={POSTER_BASEURL + (movie.poster_path ?? movie.profile_path)} alt={movie.name} className='w-full h-full rounded-sm transition duration-200 ease-in-out group-hover:scale-110' />
             </div>
         </Link>
         <div>

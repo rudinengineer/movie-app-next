@@ -25,7 +25,7 @@ export default function RelatedMovies({movieId, type}: Props) {
       }
     }
     fetchMovies()
-  }, [])
+  }, [movieId])
 
   return (
     <div className='p-1'>
