@@ -19,8 +19,10 @@ export async function generateMetadata({params}: Props) {
       description: data.overview,
       openGraph: {
           title: data.name ?? data.original_name,
+          type: 'website',
+          url: process.env.BASE_URL + '/tv/' + data.id,
           description: data.overview,
-          images: POSTER_BASEURL + data.poster_path
+          images: POSTER_BASEURL + data.poster_path,
       }
   }
 }

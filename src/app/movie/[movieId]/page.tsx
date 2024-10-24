@@ -19,6 +19,8 @@ export async function generateMetadata({params}: Props) {
       description: data.overview,
       openGraph: {
           title: data.title ?? data.original_title,
+          type: 'website',
+          url: process.env.BASE_URL + '/movie/' + data.id,
           description: data.overview,
           images: POSTER_BASEURL + data.poster_path
       }
