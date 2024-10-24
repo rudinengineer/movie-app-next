@@ -37,16 +37,16 @@ export default function Navbar({}: Props) {
                         <div className="hidden group-hover:flex absolute left-0 z-50 w-44">
                             <div className="w-full mt-3 px-4 p-3 bg-darkSecondary rounded-md">
                                 <li>
-                                    <Link href={'/search?type=movie&filter=now-playing'} className='link'>Now Playing</Link>
+                                    <Link href={'/filter/movie/now-playing'} className='link'>Now Playing</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=movie&filter=popular'} className='link'>Popular</Link>
+                                    <Link href={'/filter/movie/popular'} className='link'>Popular</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=movie&filter=top-rated'} className='link'>Top Rated</Link>
+                                    <Link href={'/filter/movie/top-rated'} className='link'>Top Rated</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=movie&filter=upcoming'} className='link'>Upcoming</Link>
+                                    <Link href={'/filter/movie/upcoming'} className='link'>Upcoming</Link>
                                 </li>
                             </div>
                         </div>
@@ -59,16 +59,16 @@ export default function Navbar({}: Props) {
                         <div className="hidden group-hover:flex absolute left-0 z-50 w-44">
                             <div className="w-full mt-3 px-4 p-3 bg-darkSecondary rounded-md">
                                 <li>
-                                    <Link href={'/search?type=tv&filter=airing-today'} className='link'>Airing Today</Link>
+                                    <Link href={'/filter/tv/airing-today'} className='link'>Airing Today</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=tv&filter=on-the-air'} className='link'>On The Air</Link>
+                                    <Link href={'/filter/tv/on-the-air'} className='link'>On The Air</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=tv&filter=popular'} className='link'>Popular</Link>
+                                    <Link href={'/filter/tv/popular'} className='link'>Popular</Link>
                                 </li>
                                 <li className='mt-2.5'>
-                                    <Link href={'/search?type=tv&filter=top-rated'} className='link'>Top Rated</Link>
+                                    <Link href={'/filter/tv/top-rated'} className='link'>Top Rated</Link>
                                 </li>
                             </div>
                         </div>
@@ -121,16 +121,16 @@ export default function Navbar({}: Props) {
                             <div>
                                 <h1 className="text-lg font-semibold">Movies</h1>
                                 <div className="mt-3 grid grid-cols-2 gap-3">
-                                    <Link href={'/search?type=movie&filter=now-playing'} className='link'>
+                                    <Link href={'/filter/movie/now-playing'} className='link'>
                                         <span className='text-xs'>-</span> <span>Now Playing</span>
                                     </Link>
-                                    <Link href={'/search?type=movie&filter=popular'} className='link'>
+                                    <Link href={'/filter/movie/popular'} className='link'>
                                         <span className='text-xs'>-</span> <span>Popular</span>
                                     </Link>
-                                    <Link href={'/search?type=movie&filter=top-rated'} className='link'>
+                                    <Link href={'/filter/movie/top-rated'} className='link'>
                                         <span className='text-xs'>-</span> <span>Top Rated</span>
                                     </Link>
-                                    <Link href={'/search?type=movie&filter=upcoming'} className='link'>
+                                    <Link href={'/filter/movie/upcoming'} className='link'>
                                         <span className='text-xs'>-</span> <span>Upcoming</span>
                                     </Link>
                                 </div>
@@ -138,16 +138,16 @@ export default function Navbar({}: Props) {
                             <div className='mt-6'>
                                 <h1 className="text-lg font-semibold">TV SERIES</h1>
                                 <div className="mt-3 grid grid-cols-2 gap-2.5">
-                                    <Link href={'/search?type=tv&filter=airing-today'}>
+                                    <Link href={'/filter/tv/airing-today'}>
                                         <span className='text-xs'>-</span> <span className='link'>Airing Today</span>
                                     </Link>
-                                    <Link href={'/search?type=tv&filter=on-the-air'}>
+                                    <Link href={'/filter/tv/on-the-air'}>
                                         <span className='text-xs'>-</span> <span className='link'>On The Air</span>
                                     </Link>
-                                    <Link href={'/search?type=tv&filter=popular'}>
+                                    <Link href={'/filter/tv/popular'}>
                                         <span className='text-xs'>-</span> <span className='link'>Popular</span>
                                     </Link>
-                                    <Link href={'/search?type=tv&filter=top-rated'}>
+                                    <Link href={'/filter/tv/top-rated'}>
                                         <span className='text-xs'>-</span> <span className='link'>Top Rated</span>
                                     </Link>
                                 </div>

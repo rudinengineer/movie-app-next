@@ -6,7 +6,7 @@ import MovieSkeleton from '~/components/skeleton/MovieSkeleton'
 import { MovieType } from '~/types/movie';
 import Slider from '~/components/ui/Slider'
 import Pagination from '~/components/ui/Pagination';
-import { useSearchParams } from 'next/navigation'
+// import { useSearchParams } from 'next/navigation'
 
 type Props = {}
 
@@ -15,8 +15,9 @@ export default function Home({}: Props) {
   const [movies, setMovies] = React.useState<Array<MovieType>>([])
   const [isLoading, setLoading] = React.useState<boolean>(true)
   const [paginateCount, setPaginateCount] = React.useState<Array<any>>([])
-  const params = useSearchParams()
-  const page: number = params.has('page') ? Number(params.get('page')) : 1
+  const [page, setPage] = React.useState<number>(1)
+  // const params = useSearchParams()
+  // const page: number = params.has('page') ? Number(params.get('page')) : 1
 
   React.useEffect(() => {
     setLoading(true)
@@ -78,7 +79,7 @@ export default function Home({}: Props) {
 
           {
             movies.length > 0 && (
-              <Pagination pagination={paginateCount} page={page} total_pages={response?.total_pages} />
+              <Pagination baseUrl='/' pagination={paginateCount} page={page} total_pages={response?.total_pages} setPage={setPage} />
             )
           }
         </div>

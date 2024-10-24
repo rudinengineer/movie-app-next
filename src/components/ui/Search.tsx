@@ -1,5 +1,5 @@
 "use client"
-import { useSearchParams } from 'next/navigation'
+// import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import { sendRequestTMDB } from '~/lib/tmdb'
 import { MovieType } from '~/types/movie'
@@ -16,8 +16,9 @@ export default function Search({keyword}: Props) {
   const [movies, setMovies] = React.useState<Array<MovieType>>([])
   const [isLoading, setLoading] = React.useState<boolean>(true)
   const [paginateCount, setPaginateCount] = React.useState<Array<any>>([])
-  const params = useSearchParams()
-  const page: number = params.has('page') ? Number(params.get('page')) : 1
+  const [page, setPage] = React.useState<number>(1)
+//   const params = useSearchParams()
+//   const page: number = params.has('page') ? Number(params.get('page')) : 1
 
   React.useEffect(() => {
     setLoading(true)
@@ -40,42 +41,38 @@ export default function Search({keyword}: Props) {
       }
     }
 
-    async function fetchFilter() {
-        const response = await sendRequestTMDB(`/${params.get('type')}/${params.get('filter')?.replace('-', '_').replace('-', '_')}?page=${page}`)
-        const data = await response?.data
-        if ( data ) {
-            setResponse(data)
-            setMovies(data?.results)
-            let result = []
-            for (let index = 0; index < (Number(data?.total_pages) > 9 ? 9 : Number(data?.total_pages)); index++) {
-                if ( page > (Number(data?.total_pages) - page) ) {
-                    result.push(Number(data?.total_pages) - index)
-                } else {
-                    result.push(page + index)
-                }
-            }
-            setPaginateCount(result)
-            setLoading(false)
-        }
-    }
+    // async function fetchFilter() {
+    //     const response = await sendRequestTMDB(`/${params.get('type')}/${params.get('filter')?.replace('-', '_').replace('-', '_')}?page=${page}`)
+    //     const data = await response?.data
+    //     if ( data ) {
+    //         setResponse(data)
+    //         setMovies(data?.results)
+    //         let result = []
+    //         for (let index = 0; index < (Number(data?.total_pages) > 9 ? 9 : Number(data?.total_pages)); index++) {
+    //             if ( page > (Number(data?.total_pages) - page) ) {
+    //                 result.push(Number(data?.total_pages) - index)
+    //             } else {
+    //                 result.push(page + index)
+    //             }
+    //         }
+    //         setPaginateCount(result)
+    //         setLoading(false)
+    //     }
+    // }
 
-    if ( !params.has('type') && !params.has('filter') ) {
-        fetchMovies()
-    } else {
-        fetchFilter()
-    }
-  }, [keyword, page, params])
+    fetchMovies()
+    // if ( !params.has('type') && !params.has('filter') ) {
+    // } else {
+    //     fetchFilter()
+    // }
+  }, [keyword, page])
 
   return (
     <div>
       <div className="p-3">
-        {
-            !params.has('type') && !params.has('filter') && (
-                <div>
-                    <h1 className='text-2xl font-bold'>Hasil pencarian dari { '"' + keyword + '"' }</h1>
-                </div>
-            )
-        }
+        <div>
+            <h1 className='text-2xl font-bold'>Hasil pencarian dari { '"' + keyword + '"' }</h1>
+        </div>
         <div className="mt-4 grid grid-cols-3 ss:grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-3">
           {
             isLoading ? (
@@ -85,7 +82,7 @@ export default function Search({keyword}: Props) {
             ) : (
                 movies.length > 0 && movies.map((value: any, index: number) => (
                     <div className='mb-2' key={index}>
-                        <Movie movie={value} type={params.has('type') ? params.get('type') : null} />
+                        <Movie movie={value} />
                     </div>
                 ))
             )
@@ -93,7 +90,7 @@ export default function Search({keyword}: Props) {
         </div>
 
         {
-          !movies.length && (
+          (!isLoading && !movies.length) && (
               <div className="mt-2 w-full flex justify-center">
                   <h1 className="text-center font-semibold">Data tidak ditemukan.</h1>
               </div>
@@ -102,7 +99,7 @@ export default function Search({keyword}: Props) {
 
         {
             (!isLoading && movies.length > 0) && (
-                <Pagination pagination={paginateCount} keyword={keyword} total_pages={response?.total_pages} page={page} type={params.get('type')} filter={params.get('filter')} />
+                <Pagination baseUrl={`/search/${keyword}`} pagination={paginateCount} keyword={keyword} total_pages={response?.total_pages} page={page} setPage={setPage} />
             )
         }
       </div>
