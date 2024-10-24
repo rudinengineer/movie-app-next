@@ -41,7 +41,8 @@ export default function Pagination({baseUrl, pagination, total_pages, page, keyw
             <li>
                 <button
                     onClick={() => {setPage(state => state + 1)}}
-                    // href={`${baseUrl}${ type ? `?type=${type}&filter=${filter}&` : '?' }page=${total_pages}`} className='button px-4 p-1.5 rounded-sm'
+                    // href={`${baseUrl}${ type ? `?type=${type}&filter=${filter}&` : '?' }page=${total_pages}`}
+                    className='button px-4 p-1.5 rounded-sm'
                 >
                     { total_pages }
                 </button>

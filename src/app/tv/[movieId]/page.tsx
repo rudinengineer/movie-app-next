@@ -15,10 +15,10 @@ export async function generateMetadata({params}: Props) {
   const data: MovieType = await response?.data
   
   return {
-      title: data.title ? data.title : data.original_title,
+      title: data.name ?? data.original_name,
       description: data.overview,
       openGraph: {
-          title: data.title ? data.title : data.original_title,
+          title: data.name ?? data.original_name,
           description: data.overview,
           images: POSTER_BASEURL + data.poster_path
       }
