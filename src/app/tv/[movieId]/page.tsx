@@ -23,7 +23,14 @@ export async function generateMetadata({params}: Props) {
           type: 'website',
           url: BASE_URL + '/tv/' + data.id,
           description: data.overview,
-          images: POSTER_BASEURL + data.poster_path,
+          images: [
+            {
+                type: 'image/jpeg',
+                src: POSTER_BASEURL + data.poster_path,
+                securUrl: POSTER_BASEURL + data.poster_path,
+                alt: data.title ?? data.original_title
+            }
+        ]
       }
   }
 }
