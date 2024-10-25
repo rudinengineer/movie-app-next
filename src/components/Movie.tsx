@@ -27,7 +27,12 @@ export default function Movie({movie, type}: Props) {
             </div>
         </Link>
         <div>
-            <Link href={(type ?? movie.media_type) === 'movie' || (type ?? movie.media_type) === 'tv' ? `/${type ?? (movie.media_type === 'tv' ? 'tv' : 'movie')}/${movie.id}` : ''} className="w-full mt-3 text-base text-limit-1 font-semibold transition ease-in-out hover:text-primary">{ movie.name ?? movie.title }</Link>
+            <Link
+                href={(type ?? movie.media_type) === 'movie' || (type ?? movie.media_type) === 'tv' ? `/${type ?? (movie.media_type === 'tv' ? 'tv' : 'movie')}/${movie.id}` : ''}
+                className="w-full mt-3 text-base text-limit-1 font-semibold transition ease-in-out hover:text-primary"
+            >
+                { movie.name ?? movie.title }
+            </Link>
             <div className="w-full flex-between center">
                 <h1 className="font-medium text-[#6a6a6a]">{ movie.first_air_date ? movie.first_air_date?.split('-')[0] : movie.release_date?.split('-')[0] }</h1>
                 <div className="flex items-center gap-0.5">

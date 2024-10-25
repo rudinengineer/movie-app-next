@@ -3,6 +3,7 @@ import TvDetail from '~/components/ui/tv-detail'
 import { sendRequestTMDB } from "~/lib/tmdb";
 import { MovieType } from "~/types/movie";
 import { POSTER_BASEURL } from "~/constants/tmdb";
+import { BASE_URL } from '~/constants/app';
 
 type Props = {
     params: {
@@ -20,7 +21,7 @@ export async function generateMetadata({params}: Props) {
       openGraph: {
           title: data.name ?? data.original_name,
           type: 'website',
-          url: process.env.BASE_URL + '/tv/' + data.id,
+          url: BASE_URL + '/tv/' + data.id,
           description: data.overview,
           images: POSTER_BASEURL + data.poster_path,
       }

@@ -6,6 +6,9 @@ import Navbar from "~/components/Navbar";
 export const metadata: Metadata = {
   title: app_name,
   description: app_name + " adalah website yang menyediakan detail dari Movie dan Tv Series yang populer.",
+  other: {
+    'facebook-domain-verification': 'mczzeaf478xk98jw0h6fqya6v0ic0d'
+  }
 };
 
 export default function RootLayout({
