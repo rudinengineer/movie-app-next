@@ -28,7 +28,7 @@ export default function RelatedMovies({movieId, type}: Props) {
   }, [movieId, type])
 
   return (
-    <div className='p-1'>
+    <div className='p-1.5'>
         <div>
           <h1 className='text-xl font-bold'>Related Movies✨</h1>
         </div>

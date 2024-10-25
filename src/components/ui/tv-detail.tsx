@@ -3,9 +3,11 @@ import React from 'react'
 import { POSTER_BASEURL } from '~/constants/tmdb'
 import RelatedMovies from '../RelatedMovies'
 import { sendRequestTMDB } from '~/lib/tmdb'
-import { StarIcon } from '@heroicons/react/16/solid'
+import { CheckIcon, StarIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
 import Image from 'next/image'
+import { SHORTLINK_URL } from '~/constants/app'
+import copy from 'clipboard-copy'
 
 type Props = {
     movieId: any
@@ -13,6 +15,7 @@ type Props = {
 
 export default function TvDetail({movieId}: Props) {
   const [movie, setMovie] = React.useState<any>()
+  const [isCopied, setCopied] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     async function fetchMovie() {
@@ -26,6 +29,14 @@ export default function TvDetail({movieId}: Props) {
 
     fetchMovie()
   }, [movieId])
+
+  const copyUrl = async () => {
+    await copy(SHORTLINK_URL + '?type=tv&id=' + movieId)
+    setCopied(true)
+    setTimeout(() => {
+    setCopied(false)
+    }, 3000)
+  }
 
   return (
     movie && (
@@ -43,7 +54,7 @@ export default function TvDetail({movieId}: Props) {
                                 height={100}
                                 src={POSTER_BASEURL + movie?.poster_path}
                                 alt={movie?.name}
-                                className='w-2/3 sm:w-full h-full max-h-96 rounded-sm'
+                                className='w-2/3 sm:w-full sm:min-w-52 h-full max-h-96 rounded-sm'
                                 data-border-width
                                 data-border-avatar-radius
                                 data-border-style
@@ -120,6 +131,29 @@ export default function TvDetail({movieId}: Props) {
                 </div>
                 <div className="mt-6">
                     <p className='text-gray-200'>{ movie?.overview }</p>
+                </div>
+                <div className="mt-6">
+                    <h1 className='font-semibold'>Share :</h1>
+                    <div className="mt-2 flex items-center">
+                        <input
+                            type='text'
+                            className="w-full sm:w-fit bg-[#282828] px-4 py-2.5 rounded-tl-sm rounded-bl-sm"
+                            value={SHORTLINK_URL + '?type=tv&id=' + movieId}
+                            readOnly
+                        />
+                        <button
+                            onClick={copyUrl}
+                            className='p-2.5 bg-primary rounded-tr-sm rounded-br-sm'
+                        >
+                            {
+                                isCopied ? (
+                                    <CheckIcon className='size-5' />
+                                ) : (
+                                    <span className='font-semibold'>copy</span>
+                                )
+                            }
+                        </button>
+                    </div>
                 </div>
             </div>
 
