@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: app_name + " adalah website yang menyediakan detail dari Movie dan Tv Series yang populer.",
   other: {
     'facebook-domain-verification': 'mczzeaf478xk98jw0h6fqya6v0ic0d',
-    'fb:app_id': '916978227155745'
+    // 'fb:app_id': '916978227155745'
   }
 };
 
