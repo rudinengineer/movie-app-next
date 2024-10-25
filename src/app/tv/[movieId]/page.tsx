@@ -24,10 +24,10 @@ export async function generateMetadata({params}: Props) {
           url: BASE_URL + '/tv/' + data.id,
           description: data.overview,
           images: POSTER_BASEURL + data.poster_path,
-          other: {
-            'og:image:type': 'image/jpeg',
-            'og:image:alt': data.title ?? data.original_title
-          }
+          // other: {
+          //   'og:image:type': 'image/jpeg',
+          //   'og:image:alt': data.title ?? data.original_title
+          // }
       }
   }
 }
