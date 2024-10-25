@@ -20,7 +20,6 @@ export default function MovieDetail({movieId}: Props) {
         const data = await response?.data
         
         if ( data ) {
-            console.log(data)
             setMovie(data)
         }
     }
@@ -39,7 +38,18 @@ export default function MovieDetail({movieId}: Props) {
                 <div className='mt-6'>
                     <div className="sm:flex gap-5">
                         <div className='w-full sm:w-fit overflow-hidden flex-shrink-0 flex justify-center items-center'>
-                            <Image width={100} height={100} src={POSTER_BASEURL + movie?.poster_path} alt={movie?.title} className='w-2/3 sm:w-full h-full max-h-96 rounded-sm' />
+                            <Image
+                                width={100}
+                                height={100}
+                                src={POSTER_BASEURL + movie?.poster_path}
+                                alt={movie?.title}
+                                className='w-2/3 sm:w-full h-full max-h-96 rounded-sm'
+                                data-border-width
+                                data-border-avatar-radius
+                                data-border-style
+                                data-border-color
+                                data-avatar
+                            />
                         </div>
                         <div className='w-full sm:w-fit p-1 flex-shrink-0'>
                             <h1 className="text-2xl sm:text-3xl font-bold">{ movie?.title }</h1>
